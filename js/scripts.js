@@ -6,6 +6,9 @@ var notes = ["A", "B", "C", "D", "E", "F", "G"];
 var sharps = ["C", "G", "D", "A", "E", "B", "F#", "C#"];
 var flats = ["C", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"];
 
+var sharpOrder = [6, 2, 5, 1, 4, 0, 3];
+var flatOrder = sharpOrder.reverse();
+
 function Chords(mode, key, sign, mood) {
   this.mode = mode;
   this.key = key;
@@ -56,12 +59,17 @@ Chords.prototype.appendAccidentals = function() {
   console.log(this.key);
 }
 Chords.prototype.buildAccidentals = function() {
-
 if (sharps.indexOf(this.key)>0){
-  count = sharps.indexOf(this.key)
+  count = sharps.indexOf(this.key);
+  for (i=0; i<count; i++) {
+    this.chordOptions[sharpOrder[i]] += "#";
+  }
 }
 else if (flats.indexOf(this.key)>0){
   count = flats.indexOf(this.key);
+  for (i=0; i<count; i++) {
+    this.chordOptions[flatOrder[i]] += "b"; 
+  }
  }
  console.log(count);
 }
