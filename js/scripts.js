@@ -1,5 +1,5 @@
-var major = ["I", "ii", "iii", "IV", "V", "vi"];
-var major = ["i", "iidim", "III", "iv", "V", "VI"];
+var major = ["I", "ii", "iii", "IV", "V", "vi", "viidim"];
+var minor = ["i", "iidim", "III", "iv", "V", "VI", "bVII"];
 
 var notes = ["A", "B", "C", "D", "E", "F", "G"];
 
@@ -16,15 +16,23 @@ function buildTonality(){
   for (i=0; i<end.length; i++){
     begin.push(end[i]);
   }
-  console.log(begin);
 
+
+  function buildMode(){
+    for (i=0; i<begin.length; i++){
+      if (i=== 1 || i=== 2 || i=== 5 || i=== 6 ){
+        begin[i] = begin[i].toLowerCase();
+        console.log(begin);
+      }
+    }
+  }
+  buildMode();
+  return begin;
 }
 
 $(document).ready(function() {
-  $("#btnkey").click(function(event){
+  $("#btnkey").submit(function(event){
     event.preventDefault();
-
-    buildTonality();
 
   $("#btnMood").submit(function(event){
     event.preventDefault();
@@ -34,5 +42,7 @@ $(document).ready(function() {
 
       });
     });
+    buildTonality();
+
   });
 });
