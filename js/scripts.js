@@ -1,3 +1,4 @@
+// visual reference for humans only
 var major = ["I", "ii", "iii", "IV", "V", "vi", "viidim"];
 var minor = ["i", "iidim", "III", "iv", "V", "VI", "bVII"];
 
@@ -31,23 +32,21 @@ function Chords(mode, key, sign, mood) {
   this.suggestion = [];
 }
 
-myChords = new Chords("minor", "F", "flat", "cliche");
-
+myChords = new Chords("minor", "C", "sharp", "cliche");
+//Builds note sequence based on the key
 Chords.prototype.buildTonality = function(){
-  // change key to user input
   var end = notes.slice(0,notes.indexOf(this.key));
-  console.log(end);
   var begin = notes.slice(notes.indexOf(this.key));
-  console.log(begin);
 
   this.chordOptions = begin;
   for (i=0; i<end.length; i++){
     begin.push(end[i]);
     this.chordOptions = begin;
-     console.log(this.chordOptions);
   }
+  console.log(this.chordOptions);
   return this.chordOptions;
 }
+// Builds order of major/minor chords
 Chords.prototype.buildMode = function(){
   if (this.mode ==="major"){
     for (i=0; i<this.chordOptions.length; i++){
@@ -65,6 +64,7 @@ Chords.prototype.buildMode = function(){
     }
   }
 }
+// Adds flat/sharp sign to the key
 Chords.prototype.appendAccidentals = function() {
   if (this.sign === "sharp") {
     this.key = this.key+"#";
@@ -77,10 +77,11 @@ Chords.prototype.appendAccidentals = function() {
   }
   console.log(this.key);
 }
-
+// Adds flat/sharp to remaining chords
 Chords.prototype.buildAccidentals = function() {
+  // Major
   if (this.mode === "major"){
-
+    // Add sharps
     if (majorSharps.indexOf(this.key)>0){
       count = majorSharps.indexOf(this.key);
       for (i=0; i<count; i++) {
@@ -88,6 +89,7 @@ Chords.prototype.buildAccidentals = function() {
         console.log(this.chordOptions);
       }
     }
+    // Add flats
     else if (majorFlats.indexOf(this.key)>0){
       count = majorFlats.indexOf(this.key);
       for (i=0; i<count; i++) {
@@ -95,25 +97,30 @@ Chords.prototype.buildAccidentals = function() {
          console.log(this.chordOptions);
       }
      }
+     // Error
      else {
        alert ("Please use " + suggestionMajor[errorArrayMajor.indexOf(this.key)]);
        console.log(suggestionMajor[errorArrayMajor.indexOf(this.key)]);
      }
    }
+   // Minor
    else {
      if (minorSharps.indexOf(this.key)>0){
+       // Add sharps
        count = minorSharps.indexOf(this.key);
        for (i=0; i<count; i++) {
          this.chordOptions[minorSharpOrder[i]] += "#";
          console.log(this.chordOptions);
        }
      }
+     // Add flats
      else if (minorFlats.indexOf(this.key)>0){
        count = minorFlats.indexOf(this.key);
        for (i=0; i<count; i++) {
          this.chordOptions[minorFlatOrder[i]] += "b";
        }
       }
+      // Error
       else {
         alert ("Please use " + suggestionMinor[errorArrayMinor.indexOf(this.key)]);
         console.log(suggestionMinor[errorArrayMinor.indexOf(this.key)]);
@@ -132,6 +139,5 @@ $(document).ready(function() {
     myChords.appendAccidentals();
     myChords.buildAccidentals();
     console.log(myChords.chordOptions);
-
   });
 });
