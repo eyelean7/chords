@@ -5,7 +5,7 @@ var notes = ["A", "B", "C", "D", "E", "F", "G"];
 
 function buildTonality(){
   console.log("hello");
-  var key = "D";
+  var key = "F";
   // change key to user input
   var end = notes.slice(0,notes.indexOf(key));
   var begin = notes.slice(notes.indexOf(key));
