@@ -15,13 +15,11 @@ function Chords(mode, key, sign, mood) {
   this.suggestion = [];
 }
 
-myChords = new Chords("minor", "D", "sharp", "cliche");
-console.log(myChords.key);
+myChords = new Chords("minor", "D", "flat", "cliche");
 
 Chords.prototype.buildTonality = function(){
   // change key to user input
   var end = notes.slice(0,notes.indexOf(this.key));
-  console.log(this.key);
   var begin = notes.slice(notes.indexOf(this.key));
   for (i=0; i<end.length; i++){
     begin.push(end[i]);
@@ -35,24 +33,47 @@ Chords.prototype.buildMode = function(){
       if (i=== 1 || i=== 2 || i=== 5 || i=== 6 ){
         this.chordOptions[i] = this.chordOptions[i].toLowerCase();
       }
-      console.log(this.chordOptions);
     }
   }
   else {
     for (i=0; i<this.chordOptions.length; i++){
       if (i=== 0 || i=== 1 || i=== 3){
         this.chordOptions[i] = this.chordOptions[i].toLowerCase();
-        console.log(this.chordOptions);
       }
     }
   }
 }
+Chords.prototype.appendAccidentals = function() {
+  if (this.sign === "sharp") {
+    this.key = this.key+"#";
+  }
+  else if (this.sign === "flat") {
+    this.key = this.key+"b";
+  }
+  else {
+    this.key = this.key;
+  }
+  console.log(this.key);
+}
+Chords.prototype.buildAccidentals = function() {
+
+if (sharps.indexOf(this.key)>0){
+  count = sharps.indexOf(this.key)
+}
+else if (flats.indexOf(this.key)>0){
+  count = flats.indexOf(this.key);
+ }
+ console.log(count);
+}
+
 
 
 $(document).ready(function() {
   $("#btn1").click(function(event){
     myChords.buildTonality();
     myChords.buildMode();
+    myChords.appendAccidentals();
+    myChords.buildAccidentals();
     console.log(myChords.chordOptions);
 
   });
