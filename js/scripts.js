@@ -27,22 +27,20 @@ function buildTonality(){
     }
   }
   buildMode();
-  return begin;
+
 }
 
 $(document).ready(function() {
-  $("#btnkey").submit(function(event){
+  $("#btnSubmit").click(function(event){
     event.preventDefault();
 
-  $("#btnMood").submit(function(event){
-    event.preventDefault();
-
-  $("#btnMajorOrMinor").submit(function(event){
-    event.preventDefault();
-
-      });
-    });
     buildTonality();
+
+    $("#outputMood").text();
+
+    $("#outputKey").text();
+
+    $("#outputMajorMinor").text();
 
   });
 });

@@ -21,6 +21,10 @@ a:active {
   margin-bottom: 30px;
 }
 
+.backgroundTeal {
+  background: #428bca;
+}
+
 body, html {
     height: 100%;
 }
@@ -33,8 +37,6 @@ body, html {
     height: 100%;
 
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
