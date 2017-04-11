@@ -1,0 +1,56 @@
+body {
+  padding-top: 70px;
+  opacity: .9;
+}
+
+ul.nav {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+ul.nav a:hover { background-color: #7fddff !important; }
+
+a:active {
+  background-color: #7fddff;
+}
+.container-fluid {
+  padding-top: 20px;
+
+  margin-bottom: 30px;
+}
+
+.topBorder {
+  margin-bottom: 20px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+.topMargin {
+  margin-top: 20px;
+}
+
+.backgroundTeal {
+  background: #428bca;
+}
+
+body, html {
+    height: 100%;
+}
+
+.background-image-class {
+    /* The image used */
+    background-image: url("../img/cello.jpeg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+button {
+  margin-top: 10px;
+}

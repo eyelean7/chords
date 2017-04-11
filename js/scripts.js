@@ -22,7 +22,6 @@ var errorArrayMinor = ["E#", "B#", "Db", "Gb", "Cb", "Fb"];
 var suggestionMinor = ["F", "C", "C#", "F#", "B", "E"];
 
 
-
 function Chords(mode, key, sign, mood) {
   this.mode = mode;
   this.key = key;
@@ -45,6 +44,8 @@ Chords.prototype.buildTonality = function(){
   }
   console.log(this.chordOptions);
   return this.chordOptions;
+
+  console.log(begin)
 }
 // Builds order of major/minor chords
 Chords.prototype.buildMode = function(){
@@ -75,7 +76,6 @@ Chords.prototype.appendAccidentals = function() {
   else {
     this.key = this.key;
   }
-  console.log(this.key);
 }
 // Adds flat/sharp to remaining chords
 Chords.prototype.buildAccidentals = function() {
@@ -128,16 +128,52 @@ Chords.prototype.buildAccidentals = function() {
    }
  console.log(count);
  console.log(this.chordOptions);
+
 }
 
-
+//UI
 
 $(document).ready(function() {
-  $("#btn1").click(function(event){
+  $("#btnSubmit").click(function(event){
     myChords.buildTonality();
     myChords.buildMode();
     myChords.appendAccidentals();
     myChords.buildAccidentals();
+
     console.log(myChords.chordOptions);
+
+    var inputMood = $("#mood").val();
+    var inputKey = $("#key").val();
+    var inputMajorMinor = $("#mode").val();
+    var inputFlatSharp = $("#flatSharp").val();
+
+    var newChords = new Chords(inputMajorMinor, inputKey, inputFlatSharp, inputMood)
+    console.log(newChords)
+
+    newChords.buildTonality();
+    newChords.buildMode();
+    newChords.appendAccidentals();
+    newChords.buildAccidentals();
+
+    console.log(newChords.chordOptions);
+
+    var toneArray = [newChords.chordOptions];
+    console.log(toneArray);
+
+    toneArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.textContent = item;
+        row.appendChild(cell);
+      });
+      table.appendChild(row);
+      });
+
+
+
+    $("tr#tones").text(newChords.chordOptions);
+    console.log(newChords);
+
   });
 });
