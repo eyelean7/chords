@@ -7,7 +7,8 @@ var sharps = ["C", "G", "D", "A", "E", "B", "F#", "C#"];
 var flats = ["C", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"];
 
 var sharpOrder = [6, 2, 5, 1, 4, 0, 3];
-var flatOrder = sharpOrder.reverse();
+var flatOrder = [3, 0, 4, 1, 5, 2, 6];
+console.log(sharpOrder);
 
 function Chords(mode, key, sign, mood) {
   this.mode = mode;
@@ -18,7 +19,7 @@ function Chords(mode, key, sign, mood) {
   this.suggestion = [];
 }
 
-myChords = new Chords("minor", "D", "flat", "cliche");
+myChords = new Chords("major", "F", "sharp", "cliche");
 
 Chords.prototype.buildTonality = function(){
   // change key to user input
@@ -63,12 +64,13 @@ if (sharps.indexOf(this.key)>0){
   count = sharps.indexOf(this.key);
   for (i=0; i<count; i++) {
     this.chordOptions[sharpOrder[i]] += "#";
+    console.log(this.chordOptions);
   }
 }
 else if (flats.indexOf(this.key)>0){
   count = flats.indexOf(this.key);
   for (i=0; i<count; i++) {
-    this.chordOptions[flatOrder[i]] += "b"; 
+    this.chordOptions[flatOrder[i]] += "b";
   }
  }
  console.log(count);
