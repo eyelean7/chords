@@ -1,0 +1,27 @@
+body { padding-top: 70px; }
+
+.container-fluid {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  border-bottom-style: solid;
+  border-color: gray;
+  margin-bottom: 30px;
+}
+
+body, html {
+    height: 100%;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("http://www.dpamicrophones.com/DPA/media/DPA-Images/How-to-mic-a-cello-with-dscreet-gm1600-DPA-microphones-L.jpg?ext=.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
