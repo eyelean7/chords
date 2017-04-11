@@ -30,7 +30,7 @@ Chords.prototype.buildTonality = function(){
   }
   return this.chordOptions;
 
-  console.log(this.chordOptions)
+  console.log(begin)
 }
 Chords.prototype.buildMode = function(){
   if (this.mode ==="major"){
@@ -90,6 +90,28 @@ $(document).ready(function() {
 
     var newChords = new Chords(inputMajorMinor, inputKey, inputFlatSharp, inputMood)
     console.log(newChords)
+
+    newChords.buildTonality();
+    console.log(newChords.buildTonality());
+
+    var toneArray = [newChords.buildTonality()];
+    console.log(toneArray);
+
+    toneArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.textContent = item;
+        row.appendChild(cell);
+      });
+      table.appendChild(row);
+      });
+
+
+
+    $("tr#tones").text(newChords.buildTonality());
+    console.log(newChords);
+
 
 
   });
