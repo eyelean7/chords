@@ -12,13 +12,23 @@ ul.nav {
 ul.nav a:hover { background-color: #7fddff !important; }
 
 a:active {
-    background-color: #7fddff;
+  background-color: #7fddff;
 }
 .container-fluid {
   padding-top: 20px;
-  padding-bottom: 40px;
 
   margin-bottom: 30px;
+}
+
+.topBorder {
+  margin-bottom: 20px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+.topMargin {
+  margin-top: 20px;
 }
 
 .backgroundTeal {
