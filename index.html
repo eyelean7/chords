@@ -42,9 +42,17 @@
             </div>
             <div class="form-group">
               <label for="MajorOrMinor">Major/Minor</label>
-              <select class="form-control" id="majorOrMinor">
-                <option>Major</option>
-                <option>Minor</option>
+              <select class="form-control" id="majorMinor">
+                <option value="major">Major</option>
+                <option value="minor">Minor</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="FlatSharp">Flat/Sharp</label>
+              <select class="form-control" id="flatSharp">
+                <option></option>
+                <option value="flat">Flat</option>
+                <option value="sharp">Sharp</option>
               </select>
                 <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -79,6 +87,16 @@
                 <div class="output-info">
                     <p>
                       <span id="outputMajorMinor"></span>
+                    </p>
+                </div>
+              </div>
+              <div class="panel backgroundTeal" id="output4">
+                  <div class="panel panel-heading">
+                    <h4>Flat/Sharp:</h4>
+                  </div>
+                <div class="output-info">
+                    <p>
+                      <span id="outputFlatSharp"></span>
                     </p>
                 </div>
               </div>
