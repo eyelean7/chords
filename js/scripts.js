@@ -18,31 +18,31 @@ function Chords(mode, key, sign, mood) {
 myChords = new Chords("minor", "D", "sharp", "cliche");
 console.log(myChords.key);
 
-function buildTonality(){
+Chords.prototype.buildTonality = function(){
   // change key to user input
-  var end = notes.slice(0,notes.indexOf(myChords.key));
-  console.log(myChords.key);
-  var begin = notes.slice(notes.indexOf(myChords.key));
+  var end = notes.slice(0,notes.indexOf(this.key));
+  console.log(this.key);
+  var begin = notes.slice(notes.indexOf(this.key));
   for (i=0; i<end.length; i++){
     begin.push(end[i]);
-    myChords.chordOptions = begin;
+    this.chordOptions = begin;
   }
-  return myChords.chordOptions;
+  return this.chordOptions;
 }
-function buildMode(){
-  if (myChords.mode ==="major"){
-    for (i=0; i<myChords.chordOptions.length; i++){
+Chords.prototype.buildMode = function(){
+  if (this.mode ==="major"){
+    for (i=0; i<this.chordOptions.length; i++){
       if (i=== 1 || i=== 2 || i=== 5 || i=== 6 ){
-        myChords.chordOptions[i] = myChords.chordOptions[i].toLowerCase();
+        this.chordOptions[i] = this.chordOptions[i].toLowerCase();
       }
-      console.log(myChords.chordOptions);
+      console.log(this.chordOptions);
     }
   }
   else {
-    for (i=0; i<myChords.chordOptions.length; i++){
+    for (i=0; i<this.chordOptions.length; i++){
       if (i=== 0 || i=== 1 || i=== 3){
-        myChords.chordOptions[i] = myChords.chordOptions[i].toLowerCase();
-        console.log(myChords.chordOptions);
+        this.chordOptions[i] = this.chordOptions[i].toLowerCase();
+        console.log(this.chordOptions);
       }
     }
   }
@@ -51,8 +51,8 @@ function buildMode(){
 
 $(document).ready(function() {
   $("#btn1").click(function(event){
-    buildTonality();
-    buildMode();
+    myChords.buildTonality();
+    myChords.buildMode();
     console.log(myChords.chordOptions);
 
   });
