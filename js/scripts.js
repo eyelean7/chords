@@ -6,7 +6,7 @@ var notes = ["A", "B", "C", "D", "E", "F", "G"];
 
 function buildTonality(){
 
-  var key = $("#key").val();;
+  var key = $("#key").val();
 
   console.log(key)
 
@@ -16,7 +16,7 @@ function buildTonality(){
   for (i=0; i<end.length; i++){
     begin.push(end[i]);
   }
-console.log(begin);
+  console.log(begin);
 
 }
 
@@ -24,9 +24,15 @@ $(document).ready(function() {
   $("#btnkey").click(function(event){
     event.preventDefault();
 
-
     buildTonality();
 
+  $("#btnMood").submit(function(event){
+    event.preventDefault();
 
+  $("#btnMajorOrMinor").submit(function(event){
+    event.preventDefault();
+
+      });
+    });
   });
 });

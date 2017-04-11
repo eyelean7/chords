@@ -1,12 +1,23 @@
-body {  padding-top: 70px;
-  background: rgba(255,255,255, 0.9);
+body {
+  padding-top: 70px;
+  opacity: .9;
 }
 
+ul.nav {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+ul.nav a:hover { background-color: #7fddff !important; }
+
+a:active {
+    background-color: #7fddff;
+}
 .container-fluid {
   padding-top: 20px;
   padding-bottom: 40px;
-  border-bottom-style: solid;
-  border-color: gray;
+
   margin-bottom: 30px;
 }
 
@@ -14,11 +25,9 @@ body, html {
     height: 100%;
 }
 
-.parallax {
+.background-image-class {
     /* The image used */
-    background-image: url("http://www.dpamicrophones.com/DPA/media/DPA-Images/How-to-mic-a-cello-with-dscreet-gm1600-DPA-microphones-L.jpg?ext=.jpg");
-
-    background opacity: .5
+    background-image: url("../img/cello.jpeg");
 
     /* Full height */
     height: 100%;

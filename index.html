@@ -12,12 +12,12 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="#">Chord Progression</a></li>
+        <ul class="nav">
+          <li role="presentation" class="backgroundBlue"><a href="#">Chord Progression</a></li>
         </ul>
       </div>
     </div>
-  <body class = "parallax">
+  <body class = "background-image-class">
     <div class="container">
       <div class="form">
         <div class="row">
@@ -28,6 +28,7 @@
                 <option>Cliché</option>
                 <option>?</option>
               </select>
+              <button id="btnMood" type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div class="form-group">
               <label for="Key">Key</label>
@@ -40,7 +41,8 @@
                 <option>A</option>
                 <option>B</option>
               </select>
-                <button id="btnkey" type="submit" class="btn btn-primary">Submit</button>
+                <button id="btnkey" type="click" class="btn btn-primary">Submit</button>
+                <p></p>
             </div>
             <div class="form-group">
               <label for="MajorOrMinor">Major/Minor</label>
