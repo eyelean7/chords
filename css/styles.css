@@ -18,6 +18,8 @@ body, html {
     /* The image used */
     background-image: url("http://www.dpamicrophones.com/DPA/media/DPA-Images/How-to-mic-a-cello-with-dscreet-gm1600-DPA-microphones-L.jpg?ext=.jpg");
 
+    background opacity: .5
+
     /* Full height */
     height: 100%;
 
@@ -26,4 +28,8 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+button {
+  margin-top: 10px;
 }
