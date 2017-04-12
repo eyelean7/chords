@@ -1,0 +1,73 @@
+body {
+  padding-top: 70px;
+  opacity: .9;
+}
+
+td {
+    text-align: center;
+}
+
+.uppercase {
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
+ul.nav {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+.navbar {
+  background-color: #c9c9c9;
+}
+
+ul.nav a:hover { background-color: #7fddff !important; }
+
+a:active {
+  background-color: #7fddff;
+}
+.container-fluid {
+  padding-top: 20px;
+
+  margin-bottom: 30px;
+}
+
+.topBorder {
+  margin-bottom: 20px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: gray;
+}
+
+.topMargin {
+  margin-top: 20px;
+}
+
+.backgroundTeal {
+  background: #428bca;
+}
+
+body, html {
+    height: 100%;
+}
+
+table {
+  background-color: white;
+}
+
+.background-image-class {
+    /* The image used */
+    background-image: url("../img/cello.jpeg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+button {
+  margin-top: 10px;
+}
