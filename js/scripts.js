@@ -150,6 +150,10 @@ $(document).ready(function() {
     var newChords = new Chords(inputMajorMinor, inputKey, inputFlatSharp, inputMood)
     console.log(newChords)
 
+    while(table.rows.length > 0) {
+    table.deleteRow(0);
+    }  
+
     newChords.buildTonality();
     newChords.buildMode();
     newChords.appendAccidentals();
@@ -165,9 +169,9 @@ $(document).ready(function() {
       items.forEach(function(item) {
         var cell = document.createElement("td");
         cell.textContent = item;
-        row.appendChild(cell);
+        row.append(cell);
       });
-        table.appendChild(row);
+        table.append(row);
       });
 
     $("#outputMood").text(inputMood);

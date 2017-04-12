@@ -56,6 +56,11 @@ table {
   background-color: white;
 }
 
+.table-bordered {
+  border-color: black;
+  border-style: inset;
+}
+
 .background-image-class {
     /* The image used */
     background-image: url("../img/cello.jpeg");
