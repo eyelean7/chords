@@ -30,6 +30,7 @@ function Chords(mode, key, sign, mood) {
   this.chordOptions = [];
   this.suggestion = [];
   this.allChordNotes = [];
+  // this.notesForChords = new notesForChords(chord, arpeggio);
 }
 
 
@@ -149,17 +150,21 @@ Chords.prototype.chordNotes = function() {
   }
 }
 
-function notesForChords (chord, arpeggio){
-  this.chord = chord ;
-  this.arpeggio = arpeggio;
-}
-
-Chords.prototype.mapNotes = function(){
-  for (i=0; i<this.chordOptions.length; i++){
-    var currentChord = new notesForChords(this.chordOptions[i], this.allChordNotes[i]);
-    console.log(currentChord);
-  }
-}
+// function notesForChords (chord, arpeggio){
+//    for (i=0; i<Chords.chordOptions.length; i++){
+//   this.chord = Chords.chordOptions[i];
+// };
+//
+//    for (i=0; i<Chords.chordOptions.length; i++){
+//   this.arpeggio = Chords.allChordNotes[i];
+// };
+// var
+// Chords.prototype.mapNotes = function(){
+//   for (i=0; i<this.chordOptions.length; i++){
+//     var currentChord = new notesForChords(this.chordOptions[i], this.allChordNotes[i]);
+//     console.log(currentChord);
+//   }
+// }
 
 //UI
 
@@ -178,15 +183,20 @@ $(document).ready(function() {
     newChords.buildAccidentals();
     newChords.buildProgression();
     newChords.chordNotes();
-    newChords.mapNotes();
+    // newChords.mapNotes();
     var toneArray = [newChords.chordOptions];
-
+    console.log(newChords.notesForChords);
     toneArray.forEach(function(items) {
       var row = document.createElement("tr");
+
+      i=0;
       items.forEach(function(item) {
         var cell = document.createElement("td");
+        cell.id = i;
         cell.textContent = item;
         row.appendChild(cell);
+        $(".hover").append(newChords.allChordNotes[i]);
+        i++;
       });
       table.appendChild(row);
     });
@@ -204,8 +214,5 @@ $(document).ready(function() {
     }
   );
 
-  // $("#table").last().hover(function hoverOut() {
-  //   alert("note");
-  // });
 
 });
