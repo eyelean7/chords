@@ -32,6 +32,7 @@ function Chords(mode, key, sign, mood) {
 }
 
 myChords = new Chords("minor", "C", "sharp", "cliche");
+
 //Builds note sequence based on the key
 Chords.prototype.buildTonality = function(){
   var end = notes.slice(0,notes.indexOf(this.key));
@@ -82,7 +83,12 @@ Chords.prototype.buildAccidentals = function() {
   // Major
   if (this.mode === "major"){
     // Add sharps
+
     if (majorSharps.indexOf(this.key)>0){
+
+    if (majorSharps.indexOf(this.key)>-1){
+
+
       count = majorSharps.indexOf(this.key);
       for (i=0; i<count; i++) {
         this.chordOptions[majorSharpOrder[i]] += "#";
@@ -90,7 +96,9 @@ Chords.prototype.buildAccidentals = function() {
       }
     }
     // Add flats
-    else if (majorFlats.indexOf(this.key)>0){
+
+    else if (majorFlats.indexOf(this.key)>-1){
+
       count = majorFlats.indexOf(this.key);
       for (i=0; i<count; i++) {
         this.chordOptions[majorFlatOrder[i]] += "b";
@@ -101,11 +109,17 @@ Chords.prototype.buildAccidentals = function() {
      else {
        alert ("Please use " + suggestionMajor[errorArrayMajor.indexOf(this.key)]);
        console.log(suggestionMajor[errorArrayMajor.indexOf(this.key)]);
+
+       this.chordOptions=undefined;
      }
    }
    // Minor
    else {
+
      if (minorSharps.indexOf(this.key)>0){
+
+     if (minorSharps.indexOf(this.key)>-1){
+
        // Add sharps
        count = minorSharps.indexOf(this.key);
        for (i=0; i<count; i++) {
@@ -114,7 +128,11 @@ Chords.prototype.buildAccidentals = function() {
        }
      }
      // Add flats
-     else if (minorFlats.indexOf(this.key)>0){
+
+    //  else if (minorFlats.indexOf(this.key)>0){
+
+     else if (minorFlats.indexOf(this.key)>-1){
+
        count = minorFlats.indexOf(this.key);
        for (i=0; i<count; i++) {
          this.chordOptions[minorFlatOrder[i]] += "b";
@@ -126,9 +144,25 @@ Chords.prototype.buildAccidentals = function() {
         console.log(suggestionMinor[errorArrayMinor.indexOf(this.key)]);
       }
    }
- console.log(count);
  console.log(this.chordOptions);
 
+        this.chordOptions=undefined;
+      }
+   }
+ console.log(this.chordOptions);
+}
+Chords.prototype.buildProgression = function() {
+  if (this.mood === "cliche") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[4], this.chordOptions[5], this.chordOptions[3]);
+    console.log(this.suggestion)
+  }
+  if (this.mood === "emotional") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[0], this.chordOptions[3], this.chordOptions[5]);
+    console.log(this.suggestion)
+  }if (this.mood === "energetic") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[2], this.chordOptions[3], this.chordOptions[5]);
+    console.log(this.suggestion)
+  }
 }
 
 //UI
@@ -144,15 +178,23 @@ $(document).ready(function() {
 
     var inputMood = $("#mood").val();
     var inputKey = $("#key").val();
-    var inputMajorMinor = $("#mode").val();
+    var inputMode = $("#mode").val();
     var inputFlatSharp = $("#flatSharp").val();
 
-    var newChords = new Chords(inputMajorMinor, inputKey, inputFlatSharp, inputMood)
+    $("#outputMood").text(inputMood);
+    $("#outputKey").text(inputKey);
+    $("#outputMajorMinor").text(inputMode);
+    $("#outputFlatSharp").text(inputFlatSharp);
+
+    var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood)
     console.log(newChords)
 
     while(table.rows.length > 0) {
     table.deleteRow(0);
-    }  
+    }
+
+    var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood);
+    console.log(newChords.mood);
 
     newChords.buildTonality();
     newChords.buildMode();
@@ -161,8 +203,10 @@ $(document).ready(function() {
 
     console.log(newChords.chordOptions);
 
+    newChords.buildProgression();
+    console.log(newChords.buildProgression())
+
     var toneArray = [newChords.chordOptions];
-    console.log(toneArray);
 
     toneArray.forEach(function(items) {
       var row = document.createElement("tr");
@@ -174,13 +218,7 @@ $(document).ready(function() {
         table.append(row);
       });
 
-    $("#outputMood").text(inputMood);
-    $("#outputKey").text(inputKey);
-    $("#outputMajorMinor").text(inputMajorMinor);
-    $("#outputFlatSharp").text(inputFlatSharp);
-
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
-
   });
 });
