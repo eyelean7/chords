@@ -121,45 +121,44 @@ Chords.prototype.buildAccidentals = function() {
         this.chordOptions=undefined;
       }
    }
- console.log(this.chordOptions);
 }
 Chords.prototype.buildProgression = function() {
   if (this.mood === "cliche") {
     this.suggestion.push(this.chordOptions[0], this.chordOptions[4], this.chordOptions[5], this.chordOptions[3]);
-    console.log(this.suggestion)
   }
   if (this.mood === "emotional") {
     this.suggestion.push(this.chordOptions[0], this.chordOptions[0], this.chordOptions[3], this.chordOptions[5]);
-    console.log(this.suggestion)
   }if (this.mood === "energetic") {
     this.suggestion.push(this.chordOptions[0], this.chordOptions[2], this.chordOptions[3], this.chordOptions[5]);
-    console.log(this.suggestion)
   }
 }
 Chords.prototype.chordNotes = function() {
   for (i=0; i < this.chordOptions.length; i++){
 
     var notesInChord = [];
-    console.log(this.chordOptions.length);
-
     var rearrangedChords = [];
-    console.log(i);
     var end = this.chordOptions.slice(0,i);
     var begin = this.chordOptions.slice(i);
-    console.log(begin);
-    console.log(end);
     rearrangedChords=begin;
     for (j=0; j<end.length; j++){
       rearrangedChords.push(end[j]);
-      console.log(rearrangedChords);
     }
     // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
-    console.log(rearrangedChords);
     notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
     this.allChordNotes.push(notesInChord);
-    console.log(notesInChord);
   }
-console.log(this.allChordNotes);
+}
+
+function notesForChords (chord, arpeggio){
+  this.chord = chord ;
+  this.arpeggio = arpeggio;
+}
+
+Chords.prototype.mapNotes = function(){
+  for (i=0; i<this.chordOptions.length; i++){
+    var currentChord = new notesForChords(this.chordOptions[i], this.allChordNotes[i]);
+    console.log(currentChord);
+  }
 }
 
 //UI
@@ -172,14 +171,14 @@ $(document).ready(function() {
     var inputFlatSharp = $("#flatSharp").val();
 
     var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood);
-    console.log(newChords.mood);
+
     newChords.buildTonality();
     newChords.buildMode();
     newChords.appendAccidentals();
     newChords.buildAccidentals();
     newChords.buildProgression();
     newChords.chordNotes();
-
+    newChords.mapNotes();
     var toneArray = [newChords.chordOptions];
 
     toneArray.forEach(function(items) {
@@ -191,11 +190,22 @@ $(document).ready(function() {
       });
       table.appendChild(row);
     });
-    // $("#table").last().onmouseover(function() {
-    //   alert("hello");
-    // });
 
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
   });
+
+  $("#table").hover(
+    function hoverIn() {
+      $(".hover").show();
+    },
+    function hoverOut() {
+      $(".hover").hide();
+    }
+  );
+
+  // $("#table").last().hover(function hoverOut() {
+  //   alert("note");
+  // });
+
 });
