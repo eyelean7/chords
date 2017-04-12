@@ -3,10 +3,29 @@ body {
   opacity: .9;
 }
 
+td {
+    text-align: center;
+}
+
+.uppercase {
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
 ul.nav {
   border-top-style: solid;
   border-bottom-style: solid;
   border-color: gray;
+  width: 100vw;
+  text-align: center;
+  font-size: 30px;
+  /*background-image: url("../img/GrandStaff.png");
+  background-repeat: no-repeat;
+  background-size: auto 60px;*/
+}
+
+.navbar {
+  background-color: #c9c9c9;
 }
 
 ul.nav a:hover { background-color: #7fddff !important; }
@@ -16,7 +35,7 @@ a:active {
 }
 .container-fluid {
   padding-top: 20px;
-
+  width: 100%;
   margin-bottom: 30px;
 }
 
@@ -37,6 +56,20 @@ a:active {
 
 body, html {
     height: 100%;
+}
+
+table {
+  background-color: white;
+  font-size: 36px;
+}
+
+.table-bordered {
+  border-color: black;
+  border-style: inset;
+}
+
+.navbarbackground {
+  background-image:
 }
 
 .background-image-class {
