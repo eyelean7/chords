@@ -194,9 +194,8 @@ $(document).ready(function() {
 
     $("#outputMood").text(inputMood);
     $("#outputKey").text(inputKey);
-    $("#outputMajorMinor").text(inputMode);
+    $("#outputMode").text(inputMode);
     $("#outputFlatSharp").text(inputFlatSharp);
-
 
     var toneArray = [newChords.chordOptions];
 
@@ -215,6 +214,21 @@ $(document).ready(function() {
       });
         table.appendChild(row);
       });
+
+    var suggestArray = [newChords.suggestion];
+
+    suggestArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.id = i;
+        cell.textContent = item;
+
+        row.appendChild(cell);
+      });
+        table.appendChild(row);
+      });
+
 
     $("#outputMood").text(inputMood);
     $("#outputKey").text(inputKey);
