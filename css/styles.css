@@ -11,7 +11,6 @@ td {
   text-transform: capitalize;
   font-size: 24px;
 }
-
 ul.nav {
   border-top-style: solid;
   border-bottom-style: solid;
@@ -21,7 +20,6 @@ ul.nav {
 .navbar {
   background-color: #c9c9c9;
 }
-
 ul.nav a:hover { background-color: #7fddff !important; }
 
 a:active {
