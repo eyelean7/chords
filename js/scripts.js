@@ -29,6 +29,7 @@ function Chords(mode, key, sign, mood) {
   this.mood = mood;
   this.chordOptions = [];
   this.suggestion = [];
+  this.allChordNotes = [];
 }
 
 
@@ -136,7 +137,6 @@ Chords.prototype.buildProgression = function() {
   }
 }
 Chords.prototype.chordNotes = function() {
-  var allChordNotes = [];
   for (i=0; i < this.chordOptions.length; i++){
 
     var notesInChord = [];
@@ -156,10 +156,10 @@ Chords.prototype.chordNotes = function() {
     // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
     console.log(rearrangedChords);
     notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
-    allChordNotes.push(notesInChord);
+    this.allChordNotes.push(notesInChord);
     console.log(notesInChord);
   }
-console.log(allChordNotes);
+console.log(this.allChordNotes);
 }
 
 //UI
@@ -191,6 +191,9 @@ $(document).ready(function() {
       });
       table.appendChild(row);
     });
+    // $("#table").last().onmouseover(function() {
+    //   alert("hello");
+    // });
 
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
