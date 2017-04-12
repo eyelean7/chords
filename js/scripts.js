@@ -30,6 +30,7 @@ function Chords(mode, key, sign, mood) {
   this.chordOptions = [];
   this.suggestion = [];
   this.allChordNotes = [];
+  this.notesSuggestion = [];
   // this.notesForChords = new notesForChords(chord, arpeggio);
 }
 //Builds note sequence based on the key
@@ -162,6 +163,34 @@ Chords.prototype.chordNotes = function() {
     this.allChordNotes.push(notesInChord);
   }
 }
+// Chords.prototype.chordNotesSuggestion = function() {
+//   for (i=0; i < this.chordOptions.length; i++){
+//
+//     var notesInChord = [];
+//     var rearrangedChords = [];
+//     var end = this.chordOptions.slice(0,i);
+//     var begin = this.chordOptions.slice(i);
+//     rearrangedChords=begin;
+//     for (j=0; j<end.length; j++){
+//       rearrangedChords.push(end[j]);
+//     }
+//     // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
+//     notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
+//     this.allChordNotes.push(notesInChord);
+//   }
+// }
+Chords.prototype.chordNotesSuggestion = function() {
+
+  for (i=0; i < this.chordOptions.length; i++){
+    for (j=0; j < this.suggestion.length; j++){
+      if (this.suggestion[j]===this.chordOptions[i]){
+        this.notesSuggestion.push(this.allChordNotes[i]);
+      }
+    }
+  }
+    console.log(this.notesSuggestion);
+}
+
 
 
 // function notesForChords (chord, arpeggio){
@@ -199,6 +228,7 @@ $(document).ready(function() {
     newChords.buildAccidentals();
     newChords.buildProgression();
     newChords.chordNotes();
+    newChords.chordNotesSuggestion();
 
 
     $("#outputMood").text(inputMood);
