@@ -18,6 +18,9 @@ ul.nav {
   width: 100vw;
   text-align: center;
   font-size: 30px;
+  /*background-image: url("../img/GrandStaff.png");
+  background-repeat: no-repeat;
+  background-size: auto 60px;*/
 }
 
 .navbar {
@@ -61,6 +64,10 @@ table {
 .table-bordered {
   border-color: black;
   border-style: inset;
+}
+
+.navbarbackground {
+  background-image:
 }
 
 .background-image-class {

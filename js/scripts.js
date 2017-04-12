@@ -167,7 +167,6 @@ Chords.prototype.chordNotes = function() {
   }
 console.log(this.allChordNotes);
 }
-
 //UI
 
 $(document).ready(function() {
@@ -179,6 +178,7 @@ $(document).ready(function() {
 
     var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood);
     console.log(newChords.mood);
+
     newChords.buildTonality();
     newChords.buildMode();
     newChords.appendAccidentals();
@@ -206,13 +206,6 @@ $(document).ready(function() {
     $("#outputKey").text(inputKey);
     $("#outputMode").text(inputMode);
     $("#outputFlatSharp").text(inputFlatSharp);
-
-    $("tr#tones").text(newChords.chordOptions);
-    console.log(newChords);
-
-    // $("#table").last().onmouseover(function() {
-    //   alert("hello");
-    // });
 
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
