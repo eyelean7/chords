@@ -5,6 +5,9 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/scripts.js"></script>
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <title>Chord Progression</title>
     <meta charset="UTF-8">
   </head>
@@ -52,6 +55,7 @@
               <label for="FlatSharp">Flat/Sharp</label>
               <select class="form-control" id="flatSharp">
                 <option value="natural">Natural</option>
+                <option value="none"></option>
                 <option value="flat">Flat</option>
                 <option value="sharp">Sharp</option>
               </select>
@@ -59,9 +63,9 @@
             </div>
           </div>
         </div>
-        <div class="row topBorder">
-          <div class="col-md-8 topMargin">
-            <div class="panel backgroundTeal" id="output1">
+        <div class="row">
+          <div class="col-md-8 topBorder">
+            <div class=" topMargin panel backgroundTeal" id="output1">
               <div class="panel panel-heading">
                 <h4>Mood:  <span class= "uppercase" id="outputMood"></span></h4>
               </div>
@@ -72,13 +76,17 @@
                 </div>
               </div>
               <div class="panel backgroundTeal" id="output3">
-                <div class="panel panel-heading">
-                  <h4>Major/Minor:  <span class= "uppercase" id="outputMajorMinor"></span></h4>
+                  <div class="panel panel-heading">
+                    <h4>Major/Minor:  <span class= "uppercase" id="outputMode"></span></h4>
+                  </div>
+                <div class="output-info">
                 </div>
               </div>
               <div class="panel backgroundTeal" id="output4">
-                <div class="panel panel-heading">
-                  <h4>Flat/Sharp:  <span class="uppercase" id="outputFlatSharp"></span></h4>
+                  <div class="panel panel-heading">
+                    <h4>Flat/Sharp:  <span class="uppercase" id="outputFlatSharp"></span></h4>
+                  </div>
+                <div class="output-info">
                 </div>
               </div>
             </div>
