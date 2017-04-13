@@ -149,6 +149,7 @@ Chords.prototype.buildProgression = function() {
   }
 }
 Chords.prototype.chordNotes = function() {
+  // this.allChordNotes = [];
   for (i=0; i < this.chordOptions.length; i++){
 
     var notesInChord = [];
@@ -265,6 +266,8 @@ $(document).ready(function() {
     $("#outputMode").text(inputMode);
     $("#outputFlatSharp").text(inputFlatSharp);
 
+
+    $(".hover").text("");
 
     var toneArray = [newChords.chordOptions];
 
