@@ -285,7 +285,7 @@ $(document).ready(function() {
         cell.textContent = item;
 
         row.appendChild(cell);
-        $(".hover").append(newChords.allChordNotes[i]);
+
         i++;
       });
         table.appendChild(row);
@@ -295,16 +295,21 @@ $(document).ready(function() {
 
     playChords(newChords.notesSuggestion);
     // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
+
+
+      $("td").hover(
+        function hoverIn() {
+          console.log($(this).attr('id'));
+          var i = $(this).attr('id')
+            $(".hover").text(newChords.allChordNotes[i]);
+            $(".hover").show();
+        },
+        function hoverOut() {
+        }
+      );
   });
 
-  $("#table").hover(
-    function hoverIn() {
-      $(".hover").show();
-    },
-    function hoverOut() {
-      $(".hover").hide();
-    }
-  );
+
 });
 window.onload = function () {
 	MIDI.loadPlugin({
