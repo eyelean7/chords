@@ -80,23 +80,19 @@ Chords.prototype.buildAccidentals = function() {
   // Major
   if (this.mode === "major"){
     // Add sharps
-
     if (majorSharps.indexOf(this.key)>-1){
-
       count = majorSharps.indexOf(this.key);
       for (i=0; i<count; i++) {
         this.chordOptions[majorSharpOrder[i]] += "#";
       }
     }
     // Add flats
-
     else if (majorFlats.indexOf(this.key)>-1){
-
       count = majorFlats.indexOf(this.key);
       for (i=0; i<count; i++) {
         this.chordOptions[majorFlatOrder[i]] += "♭";
       }
-     }
+    }
      // Error
      else {
        alert ("Please use " + suggestionMajor[errorArrayMajor.indexOf(this.key)]);
@@ -107,15 +103,11 @@ Chords.prototype.buildAccidentals = function() {
    }
    // Minor
    else {
-
      if (minorSharps.indexOf(this.key)>-1){
-
        // Add sharps
        count = minorSharps.indexOf(this.key);
        for (i=0; i<count; i++) {
          this.chordOptions[minorSharpOrder[i]] += "#";
-
-         console.log(this.chordOptions);
        }
      }
      // Add flats
@@ -123,17 +115,14 @@ Chords.prototype.buildAccidentals = function() {
     //  else if (minorFlats.indexOf(this.key)>0){
 
      else if (minorFlats.indexOf(this.key)>-1){
-
        count = minorFlats.indexOf(this.key);
        for (i=0; i<count; i++) {
          this.chordOptions[minorFlatOrder[i]] += "♭";
-
        }
       }
       // Error
       else {
         alert ("Please use " + suggestionMinor[errorArrayMinor.indexOf(this.key)]);
-
         this.chordOptions=undefined;
       }
    }
@@ -151,7 +140,6 @@ Chords.prototype.buildProgression = function() {
 Chords.prototype.chordNotes = function() {
   // this.allChordNotes = [];
   for (i=0; i < this.chordOptions.length; i++){
-
     var notesInChord = [];
     var rearrangedChords = [];
     var end = this.chordOptions.slice(0,i);
@@ -167,7 +155,6 @@ Chords.prototype.chordNotes = function() {
 }
 
 Chords.prototype.chordNotesSuggestion = function() {
-
   for (i=0; i < this.suggestion.length; i++){
     for (j=0; j < this.chordOptions.length; j++){
       if (this.suggestion[i]===this.chordOptions[j]){
@@ -178,7 +165,6 @@ Chords.prototype.chordNotesSuggestion = function() {
     console.log(this.notesSuggestion);
 }
 
-// [["C", "E", "G"], ["D", "F#", "A"]]
 function playChords (chordsProgression) {
   for (var i=0; i<chordsProgression.length; i++){
     var chord = chordsProgression[i];
@@ -202,9 +188,7 @@ function playChords (chordsProgression) {
       MIDI.noteOff(0, midiNumber, i + 0.75);
       console.log(note, midiNumber);
     }
-
   }
-
 }
 
 
@@ -220,7 +204,6 @@ $(document).ready(function() {
 
     var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood);
 
-
     newChords.buildTonality();
     newChords.buildMode();
     newChords.appendAccidentals();
@@ -229,12 +212,10 @@ $(document).ready(function() {
     newChords.chordNotes();
     newChords.chordNotesSuggestion();
 
-
     $("#outputMood").text(inputMood);
     $("#outputKey").text(inputKey);
     $("#outputMode").text(inputMode);
     $("#outputFlatSharp").text(inputFlatSharp);
-
 
     $(".hover").text("");
 
@@ -246,39 +227,51 @@ $(document).ready(function() {
 
     toneArray.forEach(function(items) {
       var row = document.createElement("tr");
-
       i=0;
       items.forEach(function(item) {
         var cell = document.createElement("td");
         cell.id = i;
         cell.textContent = item;
-
         row.appendChild(cell);
-
         i++;
       });
         table.appendChild(row);
+    });
+
+    var suggestArray = [newChords.suggestion];
+
+    suggestArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.id = i;
+        cell.textContent = item;
+        row.appendChild(cell);
       });
+        table.appendChild(row);
+    });
+
+    $("#outputMood").text(inputMood);
+    $("#outputKey").text(inputKey);
+    $("#outputMode").text(inputMode);
+    $("#outputFlatSharp").text(inputFlatSharp);
+
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
 
     playChords(newChords.notesSuggestion);
-    // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
 
-
-      $("td").hover(
-        function hoverIn() {
-          console.log($(this).attr('id'));
-          var i = $(this).attr('id')
-            $(".hover").text(newChords.allChordNotes[i].join("   "));
-            $(".hover").show();
-        },
-        function hoverOut() {
-        }
-      );
+    $("td").hover(
+      function hoverIn() {
+        console.log($(this).attr('id'));
+        var i = $(this).attr('id')
+        $(".hover").text(newChords.allChordNotes[i].join("   "));
+        $(".hover").show();
+      },
+      function hoverOut() {
+      }
+    );
   });
-
-
 });
 window.onload = function () {
 	MIDI.loadPlugin({

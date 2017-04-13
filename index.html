@@ -30,100 +30,106 @@
 <body class="background-image-class">
   <div class="container-fluid content">
     <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <ul class="nav">
-                    <li role="presentation" class="backgroundBlue"><a href="#">Chord Progression</a></li>
-                </ul>
-            </div>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <ul class="nav">
+            <li role="presentation" class="backgroundBlue"><a href="#">Chord Progression</a></li>
+          </ul>
         </div>
+      </div>
     </nav>
     <div class="container">
-        <div class="form">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label for="Mood">Mood:</label>
-                        <select class="form-control" id="mood">
-                              <option value="cliche">Cliché</option>
-                              <option value="emotional">Emotional</option>
-                              <option value="energetic">Energetic</option>
-                            </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="Key">Key:</label>
-                        <select class="form-control" id="key">
-                              <option>C</option>
-                              <option>D</option>
-                              <option>E</option>
-                              <option>F</option>
-                              <option>G</option>
-                              <option>A</option>
-                              <option>B</option>
-                            </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="MajorOrMinor">Major/Minor</label>
-                        <select class="form-control" id="mode">
-                              <option value="major">Major</option>
-                              <option value="minor">Minor</option>
-                            </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="FlatSharp">Flat/Sharp</label>
-                        <select class="form-control" id="flatSharp">
-                              <option value="natural">Natural</option>
-                              <option value="none"></option>
-                              <option value="flat">Flat</option>
-                              <option value="sharp">Sharp</option>
-                            </select>
-                        <button id="btnSubmit" type="submit" class="btn btn-primary">Submit&Play</button>
-                    </div>
-                </div>
+      <div class="form">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="Mood">Mood:</label>
+              <select class="form-control" id="mood">
+                <option value="cliche">Cliché</option>
+                <option value="emotional">Emotional</option>
+                <option value="energetic">Energetic</option>
+              </select>
             </div>
-            <div class="row">
-                <div class="col-md-8 topBorder">
-                    <div class=" topMargin panel backgroundTeal" id="output1">
-                        <div class="panel panel-heading">
-                            <h4>Mood:  <span class= "uppercase" id="outputMood"></span></h4>
-                        </div>
-                    </div>
-                    <div class="panel backgroundTeal" id="output2">
-                        <div class="panel panel-heading">
-                            <h4>Key:  <span class= "uppercase" id="outputKey"></span></h4>
-                        </div>
-                    </div>
-                    <div class="panel backgroundTeal" id="output3">
-                        <div class="panel panel-heading">
-                            <h4>Major/Minor:  <span class= "uppercase" id="outputMode"></span></h4>
-                        </div>
-                        <div class="output-info">
-                        </div>
-                    </div>
-                    <div class="panel backgroundTeal" id="output4">
-                        <div class="panel panel-heading">
-                            <h4>Flat/Sharp:  <span class="uppercase" id="outputFlatSharp"></span></h4>
-                        </div>
-                        <div class="output-info">
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="Key">Key:</label>
+              <select class="form-control" id="key">
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+                <option>A</option>
+                <option>B</option>
+              </select>
             </div>
-            <div class="row">
-                <div id="myDiv" class="col-md-4">
-                    <table id="table" class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="hover">
-
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="MajorOrMinor">Major/Minor</label>
+              <select class="form-control" id="mode">
+                <option value="major">Major</option>
+                <option value="minor">Minor</option>
+              </select>
             </div>
+            <div class="form-group">
+              <label for="FlatSharp">Flat/Sharp</label>
+              <select class="form-control" id="flatSharp">
+                <option value="natural">Natural</option>
+                <option value="none"></option>
+                <option value="flat">Flat</option>
+                <option value="sharp">Sharp</option>
+              </select>
+            </div>
+            <button id="btnSubmit" type="submit" class="btn btn-primary">Submit&Play</button>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-md-8 topBorder">
+            <div class=" topMargin panel backgroundTeal" id="output1">
+              <div class="panel panel-heading">
+                <h4>Mood:  <span class= "uppercase" id="outputMood"></span></h4>
+              </div>
+            </div>
+            <div class="panel backgroundTeal" id="output2">
+              <div class="panel panel-heading">
+                <h4>Key:  <span class= "uppercase" id="outputKey"></span></h4>
+              </div>
+            </div>
+            <div class="panel backgroundTeal" id="output3">
+              <div class="panel panel-heading">
+                <h4>Major/Minor:  <span class= "uppercase" id="outputMode"></span></h4>
+              </div>
+              <div class="output-info">
+              </div>
+            </div>
+            <div class="panel backgroundTeal" id="output4">
+              <div class="panel panel-heading">
+                <h4>Flat/Sharp:  <span class="uppercase" id="outputFlatSharp"></span></h4>
+              </div>
+              <div class="output-info">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <p class="tableFont"><span id="hide">Suggested Chords: </span></p>
+            <table class="bottomTable">
+              <tr>
+                <td id="outputResult">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <table id="table" class="table">
+          <tbody>
+            <tr class="hide">
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hover">
+        </div>
+      </div>
     </div>
   </div>
 </body>
