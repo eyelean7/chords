@@ -94,3 +94,7 @@ table {
 button {
   margin-top: 10px;
 }
+
+#play {
+  display: none;
+}

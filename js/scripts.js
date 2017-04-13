@@ -183,10 +183,10 @@ Chords.prototype.chordNotes = function() {
 // }
 Chords.prototype.chordNotesSuggestion = function() {
 
-  for (i=0; i < this.chordOptions.length; i++){
-    for (j=0; j < this.suggestion.length; j++){
-      if (this.suggestion[j]===this.chordOptions[i]){
-        this.notesSuggestion.push(this.allChordNotes[i]);
+  for (var i=0; i < this.suggestion.length; i++){
+    for (var j=0; j < this.chordOptions.length; j++){
+      if (this.suggestion[i]===this.chordOptions[j]){
+        this.notesSuggestion.push(this.allChordNotes[j]);
       }
     }
   }
@@ -292,9 +292,14 @@ $(document).ready(function() {
       });
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
-    playChords(newChords.notesSuggestion);
-    // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
+
+    $("#play").show();
+    $("#play").click(function(event){
+      playChords(newChords.notesSuggestion);
+      // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
+    });
   });
+
 
   $("#table").hover(
     function hoverIn() {
