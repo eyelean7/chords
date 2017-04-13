@@ -91,6 +91,11 @@ table {
     background-attachment: fixed;
 }
 
+#hide {
+  font-size: 36px;
+
+}
+
 button {
   margin-top: 10px;
 }
