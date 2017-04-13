@@ -195,15 +195,20 @@ Chords.prototype.chordNotesSuggestion = function() {
 
 // [["C", "E", "G"], ["D", "F#", "A"]]
 function playChords (chordsProgression) {
+  var chord = [];
+  var note = "";
+  var half = "";
+  var halfSign = ""
+  var midiNumber = 0;
   for (var i=0; i<chordsProgression.length; i++){
-    var chord = chordsProgression[i];
+    chord = chordsProgression[i];
     for (var j=0; j< chord.length; j++){
-      var note = chord[j];
-      var half = note.substr(0,1);
-      var halfSign = note.substr(1);
+      note = chord[j];
+      half = note.substr(0,1);
+      halfSign = note.substr(1);
       for (var k=0; k<comparisonNotes.length; k++){
         if (half === comparisonNotes[k]){
-          var midiNumber = k + 48;
+          midiNumber = k + 48;
         }
       }
       if (halfSign === "#"){
@@ -294,6 +299,7 @@ $(document).ready(function() {
     console.log(newChords);
 
     $("#play").show();
+    console.log(newChords.notesSuggestion);
     $("#play").click(function(event){
       playChords(newChords.notesSuggestion);
       // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
