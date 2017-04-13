@@ -165,22 +165,7 @@ Chords.prototype.chordNotes = function() {
     this.allChordNotes.push(notesInChord);
   }
 }
-// Chords.prototype.chordNotesSuggestion = function() {
-//   for (i=0; i < this.chordOptions.length; i++){
-//
-//     var notesInChord = [];
-//     var rearrangedChords = [];
-//     var end = this.chordOptions.slice(0,i);
-//     var begin = this.chordOptions.slice(i);
-//     rearrangedChords=begin;
-//     for (j=0; j<end.length; j++){
-//       rearrangedChords.push(end[j]);
-//     }
-//     // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
-//     notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
-//     this.allChordNotes.push(notesInChord);
-//   }
-// }
+
 Chords.prototype.chordNotesSuggestion = function() {
 
   for (i=0; i < this.suggestion.length; i++){
@@ -222,22 +207,6 @@ function playChords (chordsProgression) {
 
 }
 
-
-// function notesForChords (chord, arpeggio){
-//    for (i=0; i<Chords.chordOptions.length; i++){
-//   this.chord = Chords.chordOptions[i];
-// };
-//
-//    for (i=0; i<Chords.chordOptions.length; i++){
-//   this.arpeggio = Chords.allChordNotes[i];
-// };
-// var
-// Chords.prototype.mapNotes = function(){
-//   for (i=0; i<this.chordOptions.length; i++){
-//     var currentChord = new notesForChords(this.chordOptions[i], this.allChordNotes[i]);
-//     console.log(currentChord);
-//   }
-// }
 
 
 //UI
@@ -301,7 +270,7 @@ $(document).ready(function() {
         function hoverIn() {
           console.log($(this).attr('id'));
           var i = $(this).attr('id')
-            $(".hover").text(newChords.allChordNotes[i]);
+            $(".hover").text(newChords.allChordNotes[i].join("   "));
             $(".hover").show();
         },
         function hoverOut() {
