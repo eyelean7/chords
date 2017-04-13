@@ -183,8 +183,8 @@ Chords.prototype.chordNotes = function() {
 // }
 Chords.prototype.chordNotesSuggestion = function() {
 
-  for (var i=0; i < this.suggestion.length; i++){
-    for (var j=0; j < this.chordOptions.length; j++){
+  for (i=0; i < this.suggestion.length; i++){
+    for (j=0; j < this.chordOptions.length; j++){
       if (this.suggestion[i]===this.chordOptions[j]){
         this.notesSuggestion.push(this.allChordNotes[j]);
       }
@@ -195,20 +195,15 @@ Chords.prototype.chordNotesSuggestion = function() {
 
 // [["C", "E", "G"], ["D", "F#", "A"]]
 function playChords (chordsProgression) {
-  var chord = [];
-  var note = "";
-  var half = "";
-  var halfSign = ""
-  var midiNumber = 0;
   for (var i=0; i<chordsProgression.length; i++){
-    chord = chordsProgression[i];
+    var chord = chordsProgression[i];
     for (var j=0; j< chord.length; j++){
-      note = chord[j];
-      half = note.substr(0,1);
-      halfSign = note.substr(1);
+      var note = chord[j];
+      var half = note.substr(0,1);
+      var halfSign = note.substr(1);
       for (var k=0; k<comparisonNotes.length; k++){
         if (half === comparisonNotes[k]){
-          midiNumber = k + 48;
+          var midiNumber = k + 48;
         }
       }
       if (halfSign === "#"){
@@ -298,14 +293,9 @@ $(document).ready(function() {
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
 
-    $("#play").show();
-    console.log(newChords.notesSuggestion);
-    $("#play").click(function(event){
-      playChords(newChords.notesSuggestion);
-      // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
-    });
+    playChords(newChords.notesSuggestion);
+    // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
   });
-
 
   $("#table").hover(
     function hoverIn() {
