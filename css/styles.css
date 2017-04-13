@@ -1,5 +1,11 @@
-body {
+/*body {
   padding-top: 70px;
+  opacity: .9;
+}*/
+
+.content {
+  padding-top: 140px;
+  background-color: #c9c9c9;
   opacity: .9;
 }
 
@@ -82,6 +88,7 @@ table {
     /* Create the parallax scrolling effect */
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 button {
