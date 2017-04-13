@@ -21,6 +21,7 @@ var suggestionMajor = ["Ab", "Eb", "Bb", "F", "C", "E"];
 var errorArrayMinor = ["E#", "B#", "Db", "Gb", "Cb", "Fb"];
 var suggestionMinor = ["F", "C", "C#", "F#", "B", "E"];
 
+var comparisonNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 function Chords(mode, key, sign, mood) {
   this.mode = mode;
@@ -191,6 +192,34 @@ Chords.prototype.chordNotesSuggestion = function() {
     console.log(this.notesSuggestion);
 }
 
+// [["C", "E", "G"], ["D", "F#", "A"]]
+function playChords (chordsProgression) {
+  for (var i=0; i<chordsProgression.length; i++){
+    var chord = chordsProgression[i];
+    for (var j=0; j< chord.length; j++){
+      var note = chord[j];
+      var half = note.substr(0,1);
+      var halfSign = note.substr(1);
+      for (var k=0; k<comparisonNotes.length; k++){
+        if (half === comparisonNotes[k]){
+          var midiNumber = k + 48;
+        }
+      }
+      if (halfSign === "#"){
+        midiNumber += 1;
+      }
+      else if (halfSign === "♭") {
+        midiNumber -= 1;
+      }
+      MIDI.setVolume(0, 127);
+      MIDI.noteOn(0, midiNumber, 127, i);
+      MIDI.noteOff(0, midiNumber, i + 0.75);
+      console.log(note, midiNumber);
+    }
+
+  }
+
+}
 
 
 // function notesForChords (chord, arpeggio){
@@ -260,6 +289,8 @@ $(document).ready(function() {
       });
     $("tr#tones").text(newChords.chordOptions);
     console.log(newChords);
+    playChords(newChords.notesSuggestion);
+    // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
   });
 
   $("#table").hover(
@@ -271,3 +302,12 @@ $(document).ready(function() {
     }
   );
 });
+window.onload = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "https://cdn.rawgit.com/mudcube/MIDI.js/a8a84257/examples/soundfont/",
+		instrument: "acoustic_grand_piano",
+		onprogress: function(state, progress) {
+			console.log(state, progress);
+		}
+	});
+};
