@@ -1,143 +1,379 @@
-/*body {
-  padding-top: 70px;
-  opacity: .9;
-}*/
-.tableFont {
-  font-size: 36px;
+// visual reference for humans only
+var major = ["I", "ii", "iii", "IV", "V", "vi", "viidim"];
+var minor = ["i", "iidim", "III", "iv", "V", "VI", "bVII"];
+
+var notes = ["A", "B", "C", "D", "E", "F", "G"];
+
+var majorSharps = ["C", "G", "D", "A", "E", "B", "F#", "C#"];
+var majorFlats = ["C", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"];
+
+var majorSharpOrder = [6, 2, 5, 1, 4, 0, 3];
+var majorFlatOrder = [3, 0, 4, 1, 5, 2, 6];
+
+var minorSharps = ["A", "E", "B", "F#", "C#", "G#", "D#", "A#"];
+var minorFlats = ["A", "D", "G", "C", "F", "Bb", "Eb", "Ab"];
+
+var minorSharpOrder = [1, 4, 0, 3, 6, 2, 5];
+var minorFlatOrder = [5, 2, 6, 3, 0, 4, 1];
+
+var errorArrayMajor = ["G#", "D#", "A#", "E#", "B#", "Fb"];
+var suggestionMajor = ["Ab", "Eb", "Bb", "F", "C", "E"];
+var errorArrayMinor = ["E#", "B#", "Db", "Gb", "Cb", "Fb"];
+var suggestionMinor = ["F", "C", "C#", "F#", "B", "E"];
+
+
+function Chords(mode, key, sign, mood) {
+  this.mode = mode;
+  this.key = key;
+  this.sign = sign;
+  this.mood = mood;
+  this.chordOptions = [];
+  this.suggestion = [];
+  this.allChordNotes = [];
+}
+//Builds note sequence based on the key
+Chords.prototype.buildTonality = function(){
+  var end = notes.slice(0,notes.indexOf(this.key));
+  var begin = notes.slice(notes.indexOf(this.key));
+
+  this.chordOptions = begin;
+  for (i=0; i<end.length; i++){
+    begin.push(end[i]);
+    this.chordOptions = begin;
+  }
+  return this.chordOptions;
+}
+// Builds order of major/minor chords
+Chords.prototype.buildMode = function(){
+  if (this.mode ==="major"){
+    for (i=0; i<this.chordOptions.length; i++){
+      if (i=== 1 || i=== 2 || i=== 5 || i=== 6 ){
+        this.chordOptions[i] = this.chordOptions[i].toLowerCase();
+      }
+    }
+  }
+  else {
+    for (i=0; i<this.chordOptions.length; i++){
+      if (i=== 0 || i=== 1 || i=== 3){
+        this.chordOptions[i] = this.chordOptions[i].toLowerCase();
+      }
+    }
+  }
+}
+// Adds flat/sharp sign to the key
+Chords.prototype.appendAccidentals = function() {
+  if (this.sign === "sharp") {
+    this.key = this.key+"#";
+  }
+  else if (this.sign === "flat") {
+    this.key = this.key+"b";
+  }
+  else {
+    this.key = this.key;
+  }
+}
+// Adds flat/sharp to remaining chords
+Chords.prototype.buildAccidentals = function() {
+  // Major
+  if (this.mode === "major"){
+    // Add sharps
+
+    if (majorSharps.indexOf(this.key)>-1){
+
+      count = majorSharps.indexOf(this.key);
+      for (i=0; i<count; i++) {
+        this.chordOptions[majorSharpOrder[i]] += "#";
+      }
+    }
+    // Add flats
+
+    else if (majorFlats.indexOf(this.key)>-1){
+
+      count = majorFlats.indexOf(this.key);
+      for (i=0; i<count; i++) {
+        this.chordOptions[majorFlatOrder[i]] += "♭";
+      }
+     }
+     // Error
+     else {
+       alert ("Please use " + suggestionMajor[errorArrayMajor.indexOf(this.key)]);
+
+       this.chordOptions=undefined;
+
+     }
+   }
+   // Minor
+   else {
+
+     if (minorSharps.indexOf(this.key)>-1){
+
+       // Add sharps
+       count = minorSharps.indexOf(this.key);
+       for (i=0; i<count; i++) {
+         this.chordOptions[minorSharpOrder[i]] += "#";
+
+         console.log(this.chordOptions);
+       }
+     }
+     // Add flats
+
+    //  else if (minorFlats.indexOf(this.key)>0){
+
+     else if (minorFlats.indexOf(this.key)>-1){
+
+       count = minorFlats.indexOf(this.key);
+       for (i=0; i<count; i++) {
+         this.chordOptions[minorFlatOrder[i]] += "♭";
+
+       }
+      }
+      // Error
+      else {
+        alert ("Please use " + suggestionMinor[errorArrayMinor.indexOf(this.key)]);
+
+        this.chordOptions=undefined;
+      }
+   }
+ console.log(this.chordOptions);
+}
+Chords.prototype.buildProgression = function() {
+  if (this.mood === "cliche") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[4], this.chordOptions[5], this.chordOptions[3]);
+    console.log(this.suggestion)
+  }
+  if (this.mood === "emotional") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[0], this.chordOptions[3], this.chordOptions[5]);
+    console.log(this.suggestion)
+  }if (this.mood === "energetic") {
+    this.suggestion.push(this.chordOptions[0], this.chordOptions[2], this.chordOptions[3], this.chordOptions[5]);
+    console.log(this.suggestion)
+  }
+}
+Chords.prototype.chordNotes = function() {
+  for (i=0; i < this.chordOptions.length; i++){
+
+    var notesInChord = [];
+    console.log(this.chordOptions.length);
+
+    var rearrangedChords = [];
+    console.log(i);
+    var end = this.chordOptions.slice(0,i);
+    var begin = this.chordOptions.slice(i);
+    console.log(begin);
+    console.log(end);
+    rearrangedChords=begin;
+    for (j=0; j<end.length; j++){
+      rearrangedChords.push(end[j]);
+      console.log(rearrangedChords);
+    }
+    // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
+    console.log(rearrangedChords);
+    notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
+    this.allChordNotes.push(notesInChord);
+    console.log(notesInChord);
+  }
+console.log(this.allChordNotes);
+}
+// Chords.prototype.chordNotesSuggestion = function() {
+//   for (i=0; i < this.chordOptions.length; i++){
+//
+//     var notesInChord = [];
+//     var rearrangedChords = [];
+//     var end = this.chordOptions.slice(0,i);
+//     var begin = this.chordOptions.slice(i);
+//     rearrangedChords=begin;
+//     for (j=0; j<end.length; j++){
+//       rearrangedChords.push(end[j]);
+//     }
+//     // rearrangeChords[i] = rearrangeChords[i].toUpperCase();
+//     notesInChord.push(rearrangedChords[0].toUpperCase(), rearrangedChords[2].toUpperCase(), rearrangedChords[4].toUpperCase());
+//     this.allChordNotes.push(notesInChord);
+//   }
+// }
+Chords.prototype.chordNotesSuggestion = function() {
+
+  for (i=0; i < this.suggestion.length; i++){
+    for (j=0; j < this.chordOptions.length; j++){
+      if (this.suggestion[i]===this.chordOptions[j]){
+        this.notesSuggestion.push(this.allChordNotes[j]);
+      }
+    }
+  }
+    console.log(this.notesSuggestion);
 }
 
-ul {
-    font-size: 30px;
+// [["C", "E", "G"], ["D", "F#", "A"]]
+function playChords (chordsProgression) {
+  for (var i=0; i<chordsProgression.length; i++){
+    var chord = chordsProgression[i];
+    for (var j=0; j< chord.length; j++){
+      var note = chord[j];
+      var half = note.substr(0,1);
+      var halfSign = note.substr(1);
+      for (var k=0; k<comparisonNotes.length; k++){
+        if (half === comparisonNotes[k]){
+          var midiNumber = k + 48;
+        }
+      }
+      if (halfSign === "#"){
+        midiNumber += 1;
+      }
+      else if (halfSign === "♭") {
+        midiNumber -= 1;
+      }
+      MIDI.setVolume(0, 127);
+      MIDI.noteOn(0, midiNumber, 127, i);
+      MIDI.noteOff(0, midiNumber, i + 0.75);
+      console.log(note, midiNumber);
+    }
+
+  }
+
 }
 
-li {
-  list-style-type: none;
-  font-size: 40px;
-}
 
-.content {
-  padding-top: 140px;
-  background-color: #c9c9c9;
-  opacity: .9;
-}
+// function notesForChords (chord, arpeggio){
+//    for (i=0; i<Chords.chordOptions.length; i++){
+//   this.chord = Chords.chordOptions[i];
+// };
+//
+//    for (i=0; i<Chords.chordOptions.length; i++){
+//   this.arpeggio = Chords.allChordNotes[i];
+// };
+// var
+// Chords.prototype.mapNotes = function(){
+//   for (i=0; i<this.chordOptions.length; i++){
+//     var currentChord = new notesForChords(this.chordOptions[i], this.allChordNotes[i]);
+//     console.log(currentChord);
+//   }
+// }
 
-p {
-  font-size: 24px;
-  text-align: center;
-}
 
-.uppercase {
-  text-transform: capitalize;
-  font-size: 24px;
-}
+//UI
 
-td {
-  border: 2px solid black;
-  text-align: center;
-  padding: 10px;
-}
+$(document).ready(function() {
+  $("#btnSubmit").click(function(event){
+    var inputMood = $("#mood").val();
+    var inputKey = $("#key").val();
+    var inputMode = $("#mode").val();
+    var inputFlatSharp = $("#flatSharp").val();
 
-ul.nav {
-  border-top-style: solid;
-  border-bottom-style: solid;
-  border-color: gray;
-  width: 100vw;
-  text-align: center;
-  font-size: 30px;
-  /*background-image: url("../img/GrandStaff.png");
-  background-repeat: no-repeat;
-  background-size: auto 60px;*/
-}
+    var newChords = new Chords(inputMode, inputKey, inputFlatSharp, inputMood)
 
-.navbar {
-  background-color: #c9c9c9;
-}
+    newChords.buildTonality();
+    newChords.buildMode();
+    newChords.appendAccidentals();
+    newChords.buildAccidentals();
+    newChords.buildProgression();
+    newChords.chordNotes();
 
-ul.nav a:hover { background-color: #7fddff !important; }
+    $("#outputMood").text(inputMood);
+    $("#outputKey").text(inputKey);
+    $("#outputMode").text(inputMode);
+    $("#outputFlatSharp").text(inputFlatSharp);
 
-a:active {
-  background-color: #7fddff;
-}
-.container-fluid {
-  padding-top: 20px;
-  width: 100%;
-  margin-bottom: 30px;
-}
+    var toneArray = [newChords.chordOptions];
 
-.topBorder {
-  margin-bottom: 20px;
-  border-top-style: solid;
-  border-bottom-style: solid;
-  border-color: gray;
-}
+    while(table.rows.length > 0) {
+    table.deleteRow(0);
+    }
 
-.topMargin {
-  margin-top: 20px;
-}
+    toneArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.id = i;
+        cell.textContent = item;
 
-.backgroundTeal {
-  background: #428bca;
-}
+        row.appendChild(cell);
+        i++;
+      });
+        table.appendChild(row);
+      });
 
-body, html {
-    height: 100%;
-}
+    var suggestArray = [newChords.suggestion];
+    console.log(suggestArray)
 
-table {
-  background-color: white;
-  font-size: 36px;
-  border-radius: 20px;
-  border-color: #428bca;
-  border-style:none;
-}
+    var rows = suggestArray;
+    console.log(rows)
+    rows.toString();
+    console.log(rows.toString())
 
-.table-bordered {
-  border-color: black;
-  border-style: inset;
-}
 
-.navbarbackground {
-  background-image:
-}
+    var str = rows.toString();
+    res = str.replace(/[, ]+/g, " ").trim();
+    console.log(res)
 
-.background-image-class {
-    /* The image used */
-    background-image: url("../img/cello.jpeg");
+    // var res = str.split(" ");
+    // console.log(res)
 
-    /* Full height */
-    height: 100%;
+    JSON.stringify(suggestArray)
+    console.log(JSON.stringify(suggestArray))
 
-    /* Create the parallax scrolling effect */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
 
-.floatRight {
-  float: right;
-}
 
-.col-md-4 {
-  margin: auto;
-}
+    // function makeTableHTML(suggestArray) {
+    //   var result = "<table>";
+    //     for(var i=0; i<suggestArray.length; i++) {
+    //         result += "<tr>";
+    //         for(var j=0; j<suggestArray[i].length; j++){
+    //             result += "<td>"+suggestArray[i][j]+"</td>";
+    //         }
+    //         result += "</tr>";
+    //     }
+    //     result += "</table>";
+    //
+    //     return result;
+    // }
 
-.bottomTable {
-  display: none;
-  margin: 20px auto;
-}
+    // var tbody = $('#suggestArray tbody');
+    // var textSuggest = ["Suggested", "Chords"];
+    //
+    // $.each(suggestArray, function(i, suggest) {
+    //   var tr = $('<tr>');
+    //   $.each(textSuggest, function(i, textSuggest) {
+    //     $('<td>').html(suggest[textSuggest]).appendTo(tr);
+    //   });
+    //   tbody.append(tr);
+    // });
 
-.hide {
-  display: none;
-}
+    // suggestArray.forEach(function(items) {
+    //   var row = document.createElement("tr");
+    //   items.forEach(function(item) {
+    //     var cell = document.createElement("td");
+    //     cell.id = i;
+    //     cell.textContent = item;
+    //
+    //     row.appendChild(cell);
+    //   });
+    //     table.appendChild(row);
+    //   });
+    $(".hide").show();
+    $(".bottomTable").show();
+    $("#hide").show();
 
-#hide {
-  display: none;
-}
+    $("#outputResult").text(res);
+    $("#outputMood").text(inputMood);
+    $("#outputKey").text(inputKey);
+    $("#outputMode").text(inputMode);
+    $("#outputFlatSharp").text(inputFlatSharp);
 
-#table {
-  margin: 20px auto;
-}
+    $("tr#tones").text(newChords.chordOptions);
+    console.log(newChords);
 
-button {
-  margin-top: 10px;
-}
+    playChords(newChords.notesSuggestion);
+    // playChords([["C", "E", "G"], ["D", "F#", "A"], ["F", "A", "C"]]);
+
+
+      $("td").hover(
+        function hoverIn() {
+          console.log($(this).attr('id'));
+          var i = $(this).attr('id')
+            $(".hover").text(newChords.allChordNotes[i]);
+            $(".hover").show();
+        },
+        function hoverOut() {
+        }
+      );
+  });
+});
