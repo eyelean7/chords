@@ -1,17 +1,23 @@
 // visual reference for humans only
+// chord qualities options in major and minor keys
 var major = ["I", "ii", "iii", "IV", "V", "vi", "viidim"];
 var minor = ["i", "iidim", "III", "iv", "V", "VI", "bVII"];
 
+// available notesSuggestion
 var notes = ["A", "B", "C", "D", "E", "F", "G"];
 
+// order of applied flats and sharps - index of note = number of sharps/flats
 var majorSharps = ["C", "G", "D", "A", "E", "B", "F#", "C#"];
 var majorFlats = ["C", "F", "Bb", "Eb", "Ab", "Db", "Gb", "Cb"];
 
-var majorSharpOrder = [6, 2, 5, 1, 4, 0, 3];
-var majorFlatOrder = [3, 0, 4, 1, 5, 2, 6];
-
 var minorSharps = ["A", "E", "B", "F#", "C#", "G#", "D#", "A#"];
 var minorFlats = ["A", "D", "G", "C", "F", "Bb", "Eb", "Ab"];
+
+// each number indicates the index to apply the accidental value to, depending on the calculated number of accidentals
+// e.g. E major scale: E F G A B C D
+// E major has 4 sharps, so you'd apply them to: D, G, C, F
+var majorSharpOrder = [6, 2, 5, 1, 4, 0, 3];
+var majorFlatOrder = [3, 0, 4, 1, 5, 2, 6];
 
 var minorSharpOrder = [1, 4, 0, 3, 6, 2, 5];
 var minorFlatOrder = [5, 2, 6, 3, 0, 4, 1];
@@ -162,7 +168,6 @@ Chords.prototype.chordNotesSuggestion = function() {
       }
     }
   }
-    console.log(this.notesSuggestion);
 }
 
 function playChords (chordsProgression) {
@@ -186,7 +191,6 @@ function playChords (chordsProgression) {
       MIDI.setVolume(0, 127);
       MIDI.noteOn(0, midiNumber, 127, i);
       MIDI.noteOff(0, midiNumber, i + 0.75);
-      console.log(note, midiNumber);
     }
   }
 }
@@ -257,13 +261,11 @@ $(document).ready(function() {
     $("#outputFlatSharp").text(inputFlatSharp);
 
     $("tr#tones").text(newChords.chordOptions);
-    console.log(newChords);
 
     playChords(newChords.notesSuggestion);
 
     $("td").hover(
       function hoverIn() {
-        console.log($(this).attr('id'));
         var i = $(this).attr('id')
         $(".hover").text(newChords.allChordNotes[i].join("   "));
         $(".hover").show();
@@ -278,7 +280,6 @@ window.onload = function () {
 		soundfontUrl: "https://cdn.rawgit.com/mudcube/MIDI.js/a8a84257/examples/soundfont/",
 		instrument: "acoustic_grand_piano",
 		onprogress: function(state, progress) {
-			console.log(state, progress);
 		}
 	});
 };

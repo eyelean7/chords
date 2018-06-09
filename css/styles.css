@@ -3,11 +3,11 @@
   opacity: .9;
 }*/
 
-.content {
+/*.container-fluid {
   padding-top: 140px;
   background-color: #c9c9c9;
   opacity: .9;
-}
+}*/
 
 td {
     text-align: center;
@@ -19,15 +19,12 @@ td {
 }
 
 ul.nav {
-  border-top-style: solid;
-  border-bottom-style: solid;
-  border-color: gray;
   width: 100vw;
   text-align: center;
   font-size: 30px;
-  /*background-image: url("../img/GrandStaff.png");
-  background-repeat: no-repeat;
-  background-size: auto 60px;*/
+  background-repeat: repeat-x;
+  background-size: auto 60px;
+
 }
 
 .navbar {
@@ -60,12 +57,19 @@ a:active {
   background: #428bca;
 }
 
-body, html {
+body {
+    background-image: url("../img/cello.jpeg");
+
+    /* Full height */
     height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 table {
-  background-color: white;
   font-size: 36px;
 }
 
@@ -76,19 +80,6 @@ table {
 
 .navbarbackground {
   background-image:
-}
-
-.background-image-class {
-    /* The image used */
-    background-image: url("../img/cello.jpeg");
-
-    /* Full height */
-    height: 100%;
-
-    /* Create the parallax scrolling effect */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 #hide {
@@ -102,4 +93,10 @@ button {
 
 .hover {
   font-size: 24px;
+}
+
+.suggestions {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
 }
