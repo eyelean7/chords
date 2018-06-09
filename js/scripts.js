@@ -216,10 +216,6 @@ $(document).ready(function() {
     newChords.chordNotes();
     newChords.chordNotesSuggestion();
 
-    $("#outputMood").text(inputMood);
-    $("#outputKey").text(inputKey);
-    $("#outputMode").text(inputMode);
-    $("#outputFlatSharp").text(inputFlatSharp);
 
     $(".hover").text("");
 
@@ -255,11 +251,6 @@ $(document).ready(function() {
         table.appendChild(row);
     });
 
-    $("#outputMood").text(inputMood);
-    $("#outputKey").text(inputKey);
-    $("#outputMode").text(inputMode);
-    $("#outputFlatSharp").text(inputFlatSharp);
-
     $("tr#tones").text(newChords.chordOptions);
 
     playChords(newChords.notesSuggestion);
@@ -271,6 +262,7 @@ $(document).ready(function() {
         $(".hover").show();
       },
       function hoverOut() {
+        $(".hover").hide();
       }
     );
   });
