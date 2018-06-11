@@ -220,14 +220,28 @@ $(document).ready(function() {
     $(".hover").text("");
 
     var toneArray = [newChords.chordOptions];
+    var suggestArray = [newChords.suggestion];
 
     while(table.rows.length > 0) {
-    table.deleteRow(0);
+      table.deleteRow(0);
     }
+
+    suggestArray.forEach(function(items) {
+      var row = document.createElement("tr");
+      i=0;
+      items.forEach(function(item) {
+        var cell = document.createElement("td");
+        cell.id = i;
+        cell.textContent = item;
+        row.appendChild(cell);
+      });
+      table.appendChild(row);
+    });
+
 
     toneArray.forEach(function(items) {
       var row = document.createElement("tr");
-      i=0;
+      // i=0;
       items.forEach(function(item) {
         var cell = document.createElement("td");
         cell.id = i;
@@ -236,19 +250,7 @@ $(document).ready(function() {
         i++;
       });
         table.appendChild(row);
-    });
 
-    var suggestArray = [newChords.suggestion];
-
-    suggestArray.forEach(function(items) {
-      var row = document.createElement("tr");
-      items.forEach(function(item) {
-        var cell = document.createElement("td");
-        cell.id = i;
-        cell.textContent = item;
-        row.appendChild(cell);
-      });
-        table.appendChild(row);
     });
 
     $("tr#tones").text(newChords.chordOptions);
